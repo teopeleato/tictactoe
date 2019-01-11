@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-01-2019 a las 16:50:21
+-- Tiempo de generación: 11-01-2019 a las 14:03:38
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -21,17 +21,21 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `tres_en_raya`
 --
+CREATE DATABASE IF NOT EXISTS `tres_en_raya` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `tres_en_raya`;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `game`
+-- Estructura de tabla para la tabla `partida`
 --
 
-CREATE TABLE `game` (
+CREATE TABLE `partida` (
   `id` int(8) NOT NULL,
-  `finish` tinyint(1) NOT NULL DEFAULT '0',
-  `last_moved` char(1) NOT NULL
+  `board` varchar(255) NOT NULL,
+  `finished` tinyint(1) NOT NULL DEFAULT '0',
+  `lastMoved` char(1) NOT NULL,
+  `movements` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -39,9 +43,9 @@ CREATE TABLE `game` (
 --
 
 --
--- Indices de la tabla `game`
+-- Indices de la tabla `partida`
 --
-ALTER TABLE `game`
+ALTER TABLE `partida`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -49,10 +53,10 @@ ALTER TABLE `game`
 --
 
 --
--- AUTO_INCREMENT de la tabla `game`
+-- AUTO_INCREMENT de la tabla `partida`
 --
-ALTER TABLE `game`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `partida`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

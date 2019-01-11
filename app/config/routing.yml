@@ -1,0 +1,17 @@
+blog_list:
+  path: /blog/{page}
+  defaults: { _controller: AppBundle:Blog:list, page: 1 }
+  requirements:
+    page: '\d+'
+
+blog_show:
+  path: /blog/{slug}
+  defaults: { _controller: AppBundle:Blog:show }
+
+tresenraya:
+  resource: "@TresEnRayaBundle/Resources/config/routing.yml"
+  prefix: /
+
+app:
+  resource: "@AppBundle/Controller/"
+  type: annotation

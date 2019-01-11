@@ -1,0 +1,57 @@
+body {
+  padding: 30px;
+}
+
+.board {
+  margin: 0 auto;
+  /* width: 80vw; */
+  max-width: 50vh;
+  /* height: 80vw; */
+  max-height: 60vh;
+  font-size: 1rem;
+}
+
+.boardRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell {
+  background: tomato;
+  margin: 5px;
+  color: white;
+  /* color: black; */
+  font-weight: bold;
+  flex: 1 0 auto;
+  position: relative;
+  min-height: 80px;
+  max-width: 80px;
+  text-align: center;
+  padding: 7px;
+  font-size: 40px;
+}
+
+.winnerCell {
+  background: green;
+}
+
+.btn-restart {
+  margin-top: 25px;
+}
+
+.btn-restart a {
+  width: 30%;
+}
+
+footer {
+  margin-top: 30px;
+}
+
+.pointerEventsNone {
+  pointer-events: none;
+}
+
+.pointerEventsNone2 {
+  pointer-events: none;
+}

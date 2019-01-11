@@ -1,0 +1,65 @@
+{% extends '@TresEnRaya/base.html.twig' %} {% block content %}
+
+<div class="board">
+
+  <div class="boardRow">
+    {% set pointerEventsNone = '' %}
+    {% if winner[0]!=null and winner[0]>0 %}
+      {% set winnerLetter = '' %}
+      {% if winner[0] == 1 %}
+        {% set winnerLetter = 'X' %}
+      {% elseif winner[0] == 2 %}
+      {% set winnerLetter = 'O' %}
+      {% endif %}
+      <h2>¡The winner is:  {{ winnerLetter }}!</h2>
+      {# Disable option to continue playing #}
+      {% set pointerEventsNone = 'pointerEventsNone' %}
+    {% elseif movements>=9 %}
+      <h2>Draw!</h2>
+    {% else %} 
+      <h2>Next turn: {{ lastMoved|upper }}</h2>
+    {% endif %}
+  </div>
+
+  {% for rowPosition,row in board %}  
+    <div class="boardRow">
+      {% for columnPosition,column in row %}
+        {# Miro si la posicion de cada celda esta en el array de celdas ganadoras #}
+          {% set cellPosition = rowPosition~columnPosition %}
+          {% set winnerCell = '' %}
+          {% if cellPosition in winner[1] %}
+            {% set winnerCell = 'winnerCell' %}
+          {% endif %}
+        {# Miro si hay ya escrito para deshabilitar esa celda #}
+          {% if column!=null %}
+            {% if (column=='o') or (column=='x') %} 
+              {% set pointerEventsNone2 = 'pointerEventsNone' %}
+            {% endif %}
+          {% endif %}
+          {% if column!=null %} 
+            {% if column=='o' %} 
+              <div onclick="play('{{ rowPosition }}-{{ columnPosition }}');" class="cell {{winnerCell}} {{pointerEventsNone}} {{pointerEventsNone2}}">O</div>
+            {% elseif column=='x' %} 
+              <div onclick="play('{{ rowPosition }}-{{ columnPosition }}');" class="cell {{winnerCell}} {{pointerEventsNone}} {{pointerEventsNone2}}">X</div>
+            {% else %} 
+              <div onclick="play('{{ rowPosition }}-{{ columnPosition }}');" class="cell {{pointerEventsNone}} "></div>
+            {% endif %}
+          {% endif %}
+        {# </div> #}
+      {% endfor %}
+    </div>
+  {% endfor %} 
+
+  <div class="boardRow btn-restart">
+    <input type="hidden" name="player" id="player" value="{{ lastMoved }}" />
+    <a
+      href="{{ path('tresenraya_home') }}restart"
+      class="btn btn-info"
+    >
+      Play again
+    </a>
+  </div>
+  
+</div>
+
+{% endblock %}

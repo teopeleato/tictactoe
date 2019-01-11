@@ -1,0 +1,13 @@
+tresenraya_home:
+  path: /
+  defaults: { _controller: TresEnRayaBundle:TresEnRaya:index }
+
+tresenraya_move:
+  path: /move/{player}/{position}
+  defaults: { _controller: TresEnRayaBundle:TresEnRaya:move }
+  methods: GET
+
+tresenraya_restart:
+  path: /restart
+  defaults: { _controller: TresEnRayaBundle:TresEnRaya:restart }
+  methods: GET
